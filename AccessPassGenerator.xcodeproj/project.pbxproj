@@ -12,6 +12,7 @@
 		898288471FEAB7F0007F2D02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 898288451FEAB7F0007F2D02 /* Main.storyboard */; };
 		898288491FEAB7F0007F2D02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 898288481FEAB7F0007F2D02 /* Assets.xcassets */; };
 		8982884C1FEAB7F0007F2D02 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8982884A1FEAB7F0007F2D02 /* LaunchScreen.storyboard */; };
+		898288541FEAB92D007F2D02 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898288531FEAB92D007F2D02 /* Person.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,8 @@
 		898288481FEAB7F0007F2D02 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8982884B1FEAB7F0007F2D02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8982884D1FEAB7F0007F2D02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		898288531FEAB92D007F2D02 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		898288551FEAB998007F2D02 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +41,7 @@
 		898288351FEAB7F0007F2D02 = {
 			isa = PBXGroup;
 			children = (
+				898288551FEAB998007F2D02 /* README.md */,
 				898288401FEAB7F0007F2D02 /* AccessPassGenerator */,
 				8982883F1FEAB7F0007F2D02 /* Products */,
 			);
@@ -60,6 +64,7 @@
 				898288481FEAB7F0007F2D02 /* Assets.xcassets */,
 				8982884A1FEAB7F0007F2D02 /* LaunchScreen.storyboard */,
 				8982884D1FEAB7F0007F2D02 /* Info.plist */,
+				898288531FEAB92D007F2D02 /* Person.swift */,
 			);
 			path = AccessPassGenerator;
 			sourceTree = "<group>";
@@ -136,6 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				898288541FEAB92D007F2D02 /* Person.swift in Sources */,
 				898288441FEAB7F0007F2D02 /* ViewController.swift in Sources */,
 				898288421FEAB7F0007F2D02 /* AppDelegate.swift in Sources */,
 			);
