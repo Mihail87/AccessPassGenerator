@@ -53,8 +53,14 @@ enum Discount {
     case merchandise(percentage: Int)
 }
 
-struct RequiredInformation {
-    var birthDate: Date?
+enum ManagementTier {
+    case shift
+    case general
+    case senior
+}
+
+class RequiredInformation {
+    lazy var birthDate: Date? = nil
     var firstName: String?
     var lastName: String?
     var streetName: String?
@@ -70,9 +76,11 @@ protocol PersonType {
     var discountAccess: [Discount] { get }
     var requiredInformation: RequiredInformation? { get }
     
-    //init(ofType type: Entrant)
+    
     init(ofType type: Guest, birthDate: Date?)
     init(ofType type: HourlyEmployee, firstName: String, lastName: String, streetAddress: String, city: String, state: String, zipCode: String, SSN: String, birthDate: Date?)
+    init(ofType type: Manager, firstName: String, lastName: String, streetAddress: String, city: String, state: String, zipCode: String, SSN: String, birthDate: Date?, managementTier: ManagementTier)
+    
     func swipeArea(in area: AreaAccess) -> Bool
     func swipeRide(in ride: RideAccess) -> Bool
 }
@@ -108,6 +116,7 @@ class Person: PersonType {
             self.areaAccess = [.amusement, .kitchen]
             self.rideAccess = [.all]
             self.discountAccess = [.food(percentage: 15), .merchandise(percentage: 25)]
+            self.requiredInformation = requiredInformation(firstName: firstName, lastName: lastName, streetAddress: streetAddress)
         case .rideServices:
             self.areaAccess = [.amusement, .rideControl]
             self.rideAccess = [.all]
@@ -118,6 +127,14 @@ class Person: PersonType {
             self.discountAccess = [.food(percentage: 15), .merchandise(percentage: 25)]
         }
     }
+    
+    required init(ofType type: Manager, firstName: String, lastName: String, streetAddress: String, city: String, state: String, zipCode: String, SSN: String, birthDate: Date?, managementTier: ManagementTier) {
+        self.areaAccess = [.amusement, .kitchen, .rideControl, .maintenance, .office]
+        self.rideAccess = [.all]
+        self.discountAccess = [.food(percentage: 25), .merchandise(percentage: 25)]
+        self.requiredInformation = requiredInformation(firstName: firstName, lastName: lastName, streetAddress: streetAddress)
+    }
+    
     /*
     required init(ofType type: Entrant) {
         self.entrant = type
