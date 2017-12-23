@@ -59,22 +59,52 @@ enum ManagementTier {
     case senior
 }
 
+/*
 class RequiredInformation {
     lazy var birthDate: Date? = nil
-    var firstName: String?
-    var lastName: String?
-    var streetName: String?
-    var city: String?
-    var state: String?
-    var zipCode: String?
-    var SSN: String?
+    lazy var firstName: String? = nil
+    lazy var lastName: String? = nil
+    lazy var streetName: String? = nil
+    lazy var city: String? = nil
+    lazy var state: String? = nil
+    lazy var zipCode: String? = nil
+    lazy var SSN: String? = nil
+    lazy var managementTier: ManagementTier? = nil
+    
+    init(birthDate: Date) {
+        self.birthDate = birthDate
+    }
+    
+    init(firstName: String, lastName: String, streetAddress: String, city: String, state: String, zipCode: String, SSN: String, birthDate: Date) {
+        self.firstName = firstName
+        self.lastName = lastName
+        self.streetName = streetAddress
+        self.city = city
+        self.state = state
+        self.zipCode = zipCode
+        self.SSN = SSN
+        self.birthDate = birthDate
+    }
+    
+    init(firstName: String, lastName: String, streetAddress: String, city: String, state: String, zipCode: String, SSN: String, birthDate: Date, managementTier: ManagementTier) {
+        self.firstName = firstName
+        self.lastName = lastName
+        self.streetName = streetAddress
+        self.city = city
+        self.state = state
+        self.zipCode = zipCode
+        self.SSN = SSN
+        self.birthDate = birthDate
+        self.managementTier = managementTier
+    }
 }
+*/
 
 protocol PersonType {
     var areaAccess: [AreaAccess] { get }
     var rideAccess: [RideAccess] { get }
     var discountAccess: [Discount] { get }
-    var requiredInformation: RequiredInformation? { get }
+    // var requiredInformation: RequiredInformation? { get }
     
     
     init(ofType type: Guest, birthDate: Date?)
@@ -89,7 +119,16 @@ class Person: PersonType {
     var areaAccess: [AreaAccess]
     var rideAccess: [RideAccess]
     var discountAccess: [Discount]
-    var requiredInformation: RequiredInformation?
+    
+    lazy var birthDate: Date? = nil
+    lazy var firstName: String? = nil
+    lazy var lastName: String? = nil
+    lazy var streetName: String? = nil
+    lazy var city: String? = nil
+    lazy var state: String? = nil
+    lazy var zipCode: String? = nil
+    lazy var SSN: String? = nil
+    lazy var managementTier: ManagementTier? = nil
     
     
     required init(ofType type: Guest, birthDate: Date?) {
@@ -106,7 +145,7 @@ class Person: PersonType {
             self.areaAccess = [.amusement]
             self.rideAccess = [.all]
             self.discountAccess = [.none]
-            requiredInformation = RequiredInformation(birthDate: birthDate)
+            self.birthDate = Date()
         }
     }
     
@@ -116,7 +155,6 @@ class Person: PersonType {
             self.areaAccess = [.amusement, .kitchen]
             self.rideAccess = [.all]
             self.discountAccess = [.food(percentage: 15), .merchandise(percentage: 25)]
-            self.requiredInformation = requiredInformation(firstName: firstName, lastName: lastName, streetAddress: streetAddress)
         case .rideServices:
             self.areaAccess = [.amusement, .rideControl]
             self.rideAccess = [.all]
@@ -126,13 +164,30 @@ class Person: PersonType {
             self.rideAccess = [.all]
             self.discountAccess = [.food(percentage: 15), .merchandise(percentage: 25)]
         }
+        self.firstName = firstName
+        self.lastName = lastName
+        self.streetName = streetAddress
+        self.city = city
+        self.state = state
+        self.zipCode = zipCode
+        self.SSN = SSN
+        self.birthDate = birthDate
     }
     
     required init(ofType type: Manager, firstName: String, lastName: String, streetAddress: String, city: String, state: String, zipCode: String, SSN: String, birthDate: Date?, managementTier: ManagementTier) {
         self.areaAccess = [.amusement, .kitchen, .rideControl, .maintenance, .office]
         self.rideAccess = [.all]
         self.discountAccess = [.food(percentage: 25), .merchandise(percentage: 25)]
-        self.requiredInformation = requiredInformation(firstName: firstName, lastName: lastName, streetAddress: streetAddress)
+        
+        self.firstName = firstName
+        self.lastName = lastName
+        self.streetName = streetAddress
+        self.city = city
+        self.state = state
+        self.zipCode = zipCode
+        self.SSN = SSN
+        self.birthDate = birthDate
+        self.managementTier = managementTier
     }
     
     /*
